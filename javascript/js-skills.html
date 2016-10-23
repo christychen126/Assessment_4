@@ -102,6 +102,8 @@
   var button = document.getElementById('popup-alert-button');
 
   function alertClick() {
+    // Pop up an alert
+
     alert("OH HELLOOOOO!!!!");
   }
 
@@ -129,6 +131,8 @@ var helloText = document.getElementById('message-to-change');
 var helloButton = document.getElementById('change-hello-to-goodbye-button');
 
 function turnIntoGoodbye() {
+  //change text into goodbye
+
   helloText.innerHTML = 'Goodbye';
 }
 
@@ -168,6 +172,8 @@ helloButton.addEventListener('click',turnIntoGoodbye);
   
 
   function turnSubmitIntoPopup(evt) {
+    //prevent form get submitted and make text pop up in alert
+
     evt.preventDefault();
     alert(document.getElementById('favorite-color-field').value);
   }
@@ -225,6 +231,8 @@ helloButton.addEventListener('click',turnIntoGoodbye);
 var button = document.getElementById('reverse-string-button');
 
 function reverseString() {
+  //reverse the string
+
   var msg = "Porcupines are cute"
   var newMsg
   for (var i = msg.length-1; i >= 0; i--) {
@@ -263,6 +271,8 @@ button.addEventListener('click', reverseString);
   "use strict";
   // code here for above problem
 function alertClick() {
+  //pop up an alert
+
     alert("Hey Me AGAIN!!");
   }
 
@@ -297,6 +307,8 @@ function alertClick() {
   "use strict";
   // put your code here
   function changeImgAttr(){
+    //change src attibute to a dog picture
+
     $('#kittenz-rule').attr('src', "https://i.ytimg.com/vi/opKg3fyqWt4/hqdefault.jpg");
   }
 
@@ -335,10 +347,12 @@ function alertClick() {
 
 <script>
   "use strict";
-  // put your code here
+
 
   function showPorcupine(){
-    setTimeout(function() { $('#cute-porcupine-image').fadeIn(2000); }, 1000);
+    //show the porcupine picture with delay and fadein in slowmotion
+
+    setTimeout(function() { $('#cute-porcupine-image').fadeIn(4000); }, 1000);
   }
   $('#make-a-porcupine').click(showPorcupine);
 </script>
@@ -384,16 +398,16 @@ function alertClick() {
 
 <script>
   "use strict";
-  // put your code here
-  
 
   function showMessage(evt){
+    //show the message to agree with input
+
     evt.preventDefault();
     var userInput = $('#favorite-food-input').val() ;
     $('#agreeable-text').html('I like '+ userInput +' too.');
     }
 
-  $(':submit').click(showMessage);
+  $('#agreeable-form').submit(showMessage);
 
 
 
@@ -426,9 +440,10 @@ function alertClick() {
 
 <script>
   "use strict";
-  // put your code here
 
 function startGame(){
+  //play a guessing game in alerts
+
   var randomNumber = Math.floor(Math.random() * 100) + 1 ;
   var userInput = parseInt(prompt("Guess a number!"));
 
@@ -490,20 +505,20 @@ function startGame(){
   var randomNumber
 
   function startGame2(){
+    //assign number and enable input box
+
     randomNumber = Math.floor(Math.random() * 100) + 1 ;
     $('#number-guessed').prop('disabled', false);
     $('#try-this-number').prop('disabled', false);
-    //console.log(randomNumber);
     return randomNumber;
   }
 
-console.log(randomNumber)
 
   function evaluateAnswer(evt) {
+    //evaluate user input
+
     evt.preventDefault();
     var userInput = parseInt($('#number-guessed').val());
-    //console.log(userInput);
-    //console.log(randomNumber);
 
     if (userInput < randomNumber){
       $('#number-guessing-msg').html('too-low');
@@ -553,7 +568,8 @@ console.log(randomNumber)
     var primeNumberArray = [];
 
     function getPrimeNumbers(n){  
-      
+      //calculate first n prime numbers
+
       for (var i = 2; primeNumberArray.length < n; i++) {
         var divisorFound = false;
         for (var divisor = 2; divisor < i; divisor++) {   
@@ -570,6 +586,8 @@ console.log(randomNumber)
 
 
   function displayPrimeNumbers(){
+    //display 5 prime numbers in circles
+
     getPrimeNumbers(5)
     for (var i=0; i < primeNumberArray.length; i++){
       $('#prime-box-area').append('<div class="prime-box" style="background-color:'+ PRIME_COLORS[i] + '">' + primeNumberArray[i] +'</div>');
@@ -618,6 +636,6 @@ console.log(randomNumber)
 </script>
 
 
-<!-- <script src="js-skills.js"></script> -->
+<script src="js-skills.js"></script>
 </body>
 </html>
