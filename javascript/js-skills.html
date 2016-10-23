@@ -125,14 +125,14 @@
 <script>
   "use strict";
   // code here for above-problem
-var hello_text = document.getElementById('message-to-change');
-var hello_button = document.getElementById('change-hello-to-goodbye-button');
+var helloText = document.getElementById('message-to-change');
+var helloButton = document.getElementById('change-hello-to-goodbye-button');
 
 function turnIntoGoodbye() {
-  hello_text.innerHTML = 'Goodbye';
+  helloText.innerHTML = 'Goodbye';
 }
 
-hello_button.addEventListener('click',turnIntoGoodbye);
+helloButton.addEventListener('click',turnIntoGoodbye);
 </script>
 
 <div class="hint">
@@ -164,15 +164,15 @@ hello_button.addEventListener('click',turnIntoGoodbye);
   "use strict";
   // code here for above problem
 
-  var just_an_alert_button = document.getElementById('prevent-form-submission-button')
+  var justAnAlertButton = document.getElementById('prevent-form-submission-button')
   
 
-  function turnSubmitIntoPopup(evt, user_input) {
+  function turnSubmitIntoPopup(evt) {
     evt.preventDefault();
     alert(document.getElementById('favorite-color-field').value);
   }
 
-  just_an_alert_button.addEventListener('click', turnSubmitIntoPopup);
+  justAnAlertButton.addEventListener('click', turnSubmitIntoPopup);
 
 </script>
 
@@ -258,9 +258,16 @@ button.addEventListener('click', reverseString);
   <input type="button" class="tricky-to-find" value="Pop-Up Please!">
 </fieldset>
 
+<script src="http://code.jquery.com/jquery.js"></script>
 <script>
   "use strict";
   // code here for above problem
+function alertClick() {
+    alert("Hey Me AGAIN!!");
+  }
+
+  $('.tricky-to-find').on('click', alertClick);
+
 </script>
 
 <div class="hint">
@@ -289,6 +296,12 @@ button.addEventListener('click', reverseString);
 <script>
   "use strict";
   // put your code here
+  function changeImgAttr(){
+    $('#kittenz-rule').attr('src', "https://i.ytimg.com/vi/opKg3fyqWt4/hqdefault.jpg");
+  }
+
+  $('#kittenz-rule').dblclick(changeImgAttr);
+
 </script>
 
 <div class="hint">
@@ -323,6 +336,11 @@ button.addEventListener('click', reverseString);
 <script>
   "use strict";
   // put your code here
+
+  function showPorcupine(){
+    setTimeout(function() { $('#cute-porcupine-image').fadeIn(2000); }, 1000);
+  }
+  $('#make-a-porcupine').click(showPorcupine);
 </script>
 
 <div class="hint">
@@ -367,8 +385,20 @@ button.addEventListener('click', reverseString);
 <script>
   "use strict";
   // put your code here
-</script>
+  
 
+  function showMessage(evt){
+    evt.preventDefault();
+    var userInput = $('#favorite-food-input').val() ;
+    $('#agreeable-text').html('I like '+ userInput +' too.');
+    }
+
+  $(':submit').click(showMessage);
+
+
+
+</script>
+ 
 <div class="hint">
   <div>
     Remember how to find the current value in an input field
@@ -397,6 +427,25 @@ button.addEventListener('click', reverseString);
 <script>
   "use strict";
   // put your code here
+
+function startGame(){
+  var randomNumber = Math.floor(Math.random() * 100) + 1 ;
+  var userInput = parseInt(prompt("Guess a number!"));
+
+  while (userInput !== randomNumber){
+    if (userInput < randomNumber){
+      alert('Your number is too low!');
+    } else {
+      alert('Your number is too high!');
+    } 
+    userInput = parseInt(prompt("Guess another number!"));
+    }
+  
+  alert('YOU ARE SO SMART!');
+  }
+
+  $('#play-guessing-game').click(startGame);
+
 </script>
 
 <div class="hint">
@@ -437,7 +486,39 @@ button.addEventListener('click', reverseString);
 
 <script>
   "use strict";
-  // put your code here
+
+  var randomNumber
+
+  function startGame2(){
+    randomNumber = Math.floor(Math.random() * 100) + 1 ;
+    $('#number-guessed').prop('disabled', false);
+    $('#try-this-number').prop('disabled', false);
+    //console.log(randomNumber);
+    return randomNumber;
+  }
+
+console.log(randomNumber)
+
+  function evaluateAnswer(evt) {
+    evt.preventDefault();
+    var userInput = parseInt($('#number-guessed').val());
+    //console.log(userInput);
+    //console.log(randomNumber);
+
+    if (userInput < randomNumber){
+      $('#number-guessing-msg').html('too-low');
+    } else if (userInput > randomNumber){
+        $('#number-guessing-msg').html('too-high');
+    } else if (userInput == randomNumber) {
+        $('#number-guessing-msg').html('just-right');
+        $('#number-guessed').prop('disabled', true);
+        $('#try-this-number').prop('disabled', true);
+      }   
+    }
+  
+  $('#play-guessing-game-2').click(startGame2);
+  $('#try-this-number').click(evaluateAnswer);
+
 </script>
 
 
@@ -469,6 +550,33 @@ button.addEventListener('click', reverseString);
   "use strict";
 
     var PRIME_COLORS = ['orange', 'midnightblue', 'darkgoldenrod', 'green', 'purple'];
+    var primeNumberArray = [];
+
+    function getPrimeNumbers(n){  
+      
+      for (var i = 2; primeNumberArray.length < n; i++) {
+        var divisorFound = false;
+        for (var divisor = 2; divisor < i; divisor++) {   
+            if (i % divisor == 0) {
+                divisorFound = true;
+                break;
+               }
+            }  
+        if (divisorFound == false) { primeNumberArray.push(i);}
+        }
+
+      return primeNumberArray;
+    }
+
+
+  function displayPrimeNumbers(){
+    getPrimeNumbers(5)
+    for (var i=0; i < primeNumberArray.length; i++){
+      $('#prime-box-area').append('<div class="prime-box" style="background-color:'+ PRIME_COLORS[i] + '">' + primeNumberArray[i] +'</div>');
+      }
+    }
+
+    $('#make-prime-boxes').click(displayPrimeNumbers);
 
   // put the rest of your code here
 </script>
@@ -510,6 +618,6 @@ button.addEventListener('click', reverseString);
 </script>
 
 
-<script src="js-skills.js"></script>
+<!-- <script src="js-skills.js"></script> -->
 </body>
 </html>
